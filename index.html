@@ -716,6 +716,207 @@ footer {
 }
 
 /* ══════════════════════════════
+   ANTES & DEPOIS
+══════════════════════════════ */
+.before-after-section {
+  padding: 110px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.before-after-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 460px));
+  gap: 28px;
+  justify-content: center;
+  margin-top: 64px;
+}
+
+.ba-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+}
+
+.ba-card-header {
+  padding: 16px 20px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ba-card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.ba-card-sub {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.ba-badge {
+  background: rgba(74,158,255,0.1);
+  border: 1px solid var(--border);
+  color: var(--blue);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 100px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.ba-visual {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: #08091a;
+}
+
+.ba-img-before,
+.ba-img-after {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.ba-img-before {
+  z-index: 1;
+  filter: grayscale(0.2) brightness(0.88) contrast(0.92);
+}
+
+.ba-img-after {
+  z-index: 2;
+  clip-path: inset(0 100% 0 0);
+  filter: brightness(1.06) contrast(1.12) saturate(1.15);
+}
+
+.ba-placeholder {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(6,8,16,0.9);
+  color: var(--muted);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 2px dashed rgba(74,158,255,0.15);
+  pointer-events: none;
+}
+
+.ba-sweep-bar {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 3px;
+  left: -4px;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    var(--blue2) 15%,
+    white 50%,
+    var(--blue2) 85%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 12px 4px rgba(74,158,255,0.7),
+    0 0 32px 8px rgba(74,158,255,0.25);
+  transition: opacity 0.25s;
+}
+
+.ba-sweep-bar::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 10px 5px rgba(126,200,255,0.9);
+}
+
+.ba-lbl {
+  position: absolute;
+  top: 14px;
+  z-index: 9;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 100px;
+  pointer-events: none;
+  transition: background 0.35s, color 0.35s, border-color 0.35s;
+}
+
+.ba-lbl-antes {
+  left: 14px;
+  background: var(--blue);
+  color: #060810;
+  border: 1px solid transparent;
+}
+
+.ba-lbl-depois {
+  right: 14px;
+  background: rgba(8,10,22,0.88);
+  color: var(--muted);
+  border: 1px solid rgba(74,158,255,0.18);
+}
+
+.ba-card-footer {
+  padding: 13px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+
+.ba-footer-tag {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+@media (max-width: 768px) {
+  .before-after-section {
+    padding: 60px 5%;
+  }
+  
+  .ba-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+}
+
+/* ══════════════════════════════
    RESPONSIVO
 ══════════════════════════════ */
 @media (max-width: 768px) {
@@ -896,6 +1097,7 @@ footer {
   <ul class="nav-links">
     <li><a href="#servicos">Serviços</a></li>
     <li><a href="#como-funciona">Como funciona</a></li>
+    <li><a href="#antes-depois">Antes & Depois</a></li>
     <li><a href="#contato" class="nav-cta">Pedir agora</a></li>
   </ul>
   <button class="hamburger">
@@ -1029,6 +1231,15 @@ footer {
   </div>
 </section>
 
+<!-- ANTES & DEPOIS -->
+<section class="before-after-section" id="antes-depois">
+  <div class="before-after-inner">
+    <p class="section-tag">Galeria</p>
+    <h2 class="section-h2">Veja a transformação em ação</h2>
+    <div class="ba-grid" id="ba-grid"></div>
+  </div>
+</section>
+
 <!-- CTA FINAL -->
 <section class="cta-section" id="contato">
   <div class="cta-box reveal">
@@ -1145,6 +1356,167 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.12 });
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── Antes & Depois ──
+const baCards = [
+  {
+    title: 'Troca de Cenário',
+    sub:   'Do estúdio para Paris',
+    tag:   '#Paris',
+    before: '',
+    after:  '',
+  },
+  {
+    title: 'Troca de Cenário',
+    sub:   'Novo lugar, mesmo você',
+    tag:   '#Paris',
+    before: '',
+    after:  '',
+  },
+  {
+    title: 'Visual Premium',
+    sub:   'Da praia para Paris',
+    tag:   '#Transformação',
+    before: '',
+    after:  '',
+  },
+  {
+    title: 'Visual Premium',
+    sub:   'Seu melhor lugar',
+    tag:   '#VisualPRO',
+    before: '',
+    after:  '',
+  },
+];
+
+const baGrid = document.getElementById('ba-grid');
+
+baCards.forEach((data, idx) => {
+  const card = document.createElement('div');
+  card.className = 'ba-card reveal';
+
+  card.innerHTML = `
+    <div class="ba-card-header">
+      <div>
+        <div class="ba-card-title">${data.title}</div>
+        <div class="ba-card-sub">${data.sub}</div>
+      </div>
+      <div class="ba-badge">Antes & Depois</div>
+    </div>
+
+    <div class="ba-visual" id="ba-v${idx}">
+      ${data.before
+        ? `<img class="ba-img-before" src="${data.before}" alt="antes">`
+        : `<div class="ba-img-before" style="background:#0a0d1c"></div>`}
+
+      ${data.after
+        ? `<img class="ba-img-after" src="${data.after}" alt="depois">`
+        : `<div class="ba-img-after" style="background:#0c1220"></div>`}
+
+      ${!data.before ? `
+        <div class="ba-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Adicione as fotos</span>
+        </div>` : ''}
+
+      <div class="ba-sweep-bar"></div>
+      <div class="ba-lbl ba-lbl-antes">Antes</div>
+      <div class="ba-lbl ba-lbl-depois">Depois</div>
+    </div>
+
+    <div class="ba-card-footer">
+      <div class="footer-logo">Foto<span>Pro</span></div>
+      <div class="ba-footer-tag">${data.tag}</div>
+    </div>
+  `;
+
+  baGrid.appendChild(card);
+
+  const visual = document.getElementById(`ba-v${idx}`);
+  const afterEl = visual.querySelector('.ba-img-after');
+  const bar = visual.querySelector('.ba-sweep-bar');
+  const lblAntes = visual.querySelector('.ba-lbl-antes');
+  const lblDepois = visual.querySelector('.ba-lbl-depois');
+
+  let phase = 'antes';
+  let raf = null;
+
+  function setLabels(active) {
+    if (active === 'depois') {
+      lblDepois.style.background = 'var(--blue)';
+      lblDepois.style.color = '#060810';
+      lblDepois.style.borderColor = 'transparent';
+      lblAntes.style.background = 'rgba(8,10,22,0.88)';
+      lblAntes.style.color = 'var(--muted)';
+      lblAntes.style.borderColor = 'rgba(74,158,255,0.18)';
+    } else {
+      lblAntes.style.background = 'var(--blue)';
+      lblAntes.style.color = '#060810';
+      lblAntes.style.borderColor = 'transparent';
+      lblDepois.style.background = 'rgba(8,10,22,0.88)';
+      lblDepois.style.color = 'var(--muted)';
+      lblDepois.style.borderColor = 'rgba(74,158,255,0.18)';
+    }
+  }
+
+  function animate(fromPct, toPct, duration, onDone) {
+    cancelAnimationFrame(raf);
+    const start = performance.now();
+    const range = toPct - fromPct;
+    bar.style.opacity = '1';
+
+    function step(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const e = t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+      const pct = fromPct + range * e;
+
+      afterEl.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+      bar.style.left = `calc(${pct}% - 1.5px)`;
+
+      if (t < 1) {
+        raf = requestAnimationFrame(step);
+      } else {
+        bar.style.opacity = '0';
+        onDone();
+      }
+    }
+
+    raf = requestAnimationFrame(step);
+  }
+
+  function loop() {
+    if (phase === 'antes') {
+      setTimeout(() => {
+        phase = 'reveal';
+        setLabels('depois');
+        animate(0, 100, 900, () => {
+          phase = 'depois';
+          loop();
+        });
+      }, 2000);
+    } else if (phase === 'depois') {
+      setTimeout(() => {
+        phase = 'hide';
+        setLabels('antes');
+        animate(100, 0, 900, () => {
+          phase = 'antes';
+          loop();
+        });
+      }, 2000);
+    }
+  }
+
+  afterEl.style.clipPath = 'inset(0 100% 0 0)';
+  bar.style.left = '-4px';
+  setLabels('antes');
+
+  setTimeout(() => loop(), 600 + idx * 500);
+  observer.observe(card);
+});
 </script>
 </body>
 </html>
